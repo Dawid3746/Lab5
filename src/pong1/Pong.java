@@ -26,7 +26,8 @@ public class Pong extends Application {
     private static final double ARENAY2 = ARENAY1 + ARENAHEIGHT;
     private static final double R = 10;
     private static final int LICZBAKULEK = 10;
-    private Kulka[] kulki = new Kulka[LICZBAKULEK];
+    private Kulka[] kulki = new Kulka[LICZBAKULEK/2];
+    private Rugby[] rugby = new Rugby[LICZBAKULEK/2];
 
     @Override
     public void start(Stage stage) {
@@ -57,23 +58,36 @@ public class Pong extends Application {
         gc.setFill(Color.BLACK);
         gc.fillRect(ARENAX1, ARENAY1, ARENAWIDTH, ARENAHEIGHT);
 
-        for (int i = 0; i < LICZBAKULEK; i++){
+        for (int i = 0; i < LICZBAKULEK/2; i++){
             kulki[i].checkBoundaryCollision(ARENAX1, ARENAY1, ARENAX2, ARENAY2);
+            rugby[i].checkBoundaryCollision(ARENAX1, ARENAY1, ARENAX2, ARENAY2);
             kulki[i].update();
+            rugby[i].update();
             kulki[i].draw(gc);
+            rugby[i].draw(gc);
         }
 
     }
 
     private void initKula(){
         Random lott = new Random();
-        for (int i = 0; i < LICZBAKULEK; i++){
+        for (int i = 0; i < LICZBAKULEK/2; i++){
             kulki[i] = new Kulka(
                     lott.nextDouble() * ARENAWIDTH + ARENAX1,
                     lott.nextDouble() * ARENAHEIGHT + ARENAY1,
                     5 + lott.nextDouble() * 20,
                     5 + lott.nextDouble() * 20,
+                    10,
                     Color.WHITESMOKE);
+        }
+        for (int i = 0; i < LICZBAKULEK/2; i++){
+            rugby[i] = new Rugby(
+                    lott.nextDouble() * ARENAWIDTH + ARENAX1,
+                    lott.nextDouble() * ARENAHEIGHT + ARENAY1,
+                    5 + lott.nextDouble() * 20,
+                    5 + lott.nextDouble() * 20,
+                    10,
+                    15);
         }
 
 
