@@ -11,12 +11,27 @@ public class Kulka {
     private double ySpeed;
     private double xPos;
     private double yPos;
+    private Color color;
+    private double radius;
 
     Kulka(double xPos, double yPos, double xSpeed, double ySpeed){
         this.xPos = xPos;
         this.yPos = yPos;
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
+        this.color = Color.WHITESMOKE;
+        this.radius = R;
+    }
+
+    Kulka(double xPos, double yPos, double xSpeed, double ySpeed, Color color){
+        this(xPos, yPos, xSpeed, ySpeed);
+        this.color = color;
+    }
+
+    Kulka(double xPos, double yPos, double xSpeed, double ySpeed, double radius, Color color){
+        this(xPos, yPos, xSpeed, ySpeed);
+        this.color = color;
+        this.radius = radius;
     }
 
     public void checkBoundaryCollision(double xLeft, double yTop, double xRight, double yBottom){
@@ -36,6 +51,14 @@ public class Kulka {
     public void update(){
         xPos += xSpeed;
         yPos += ySpeed;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
 }
